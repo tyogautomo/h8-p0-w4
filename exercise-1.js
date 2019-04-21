@@ -9,10 +9,14 @@ function angkaPrima(num) {
         }
     }
 
-    return true
+    if (num == 1) {
+        return false
+    } else {
+        return true
+    }
 }
 
-console.log(angkaPrima(3)); // true
+console.log(angkaPrima(2)); // true
 console.log(angkaPrima(7)); // true
 console.log(angkaPrima(6)); // false
 console.log(angkaPrima(23)); // true

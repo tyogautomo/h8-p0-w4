@@ -32,35 +32,31 @@ function shoppingTime(memberId, money) {
         [175000, "Sweater Uniklooh"],
         [50000, "Casing Handphone"]
     ]
-    // itemnya di-sort dulu dari yang paling mahils
+    // itemnya di-sort dulu dari yang paling mahal
     items.sort(function (a, b) {
         return a - b
     });
-    // console.log(items);
 
-    var hasilObj = {};
-    var purchased = [];
-    var change = money
+    var result = {
+        memberId: memberId,
+        money: money,
+        listPurchased: [],
+        changeMoney: money
+    }
 
-    for (var i = 0; i < items.length; i++) {
-        if (money >= items[i][0]) {
-            change -= items[i][0];
-            purchased.push(items[i][1]);
+    for (let i = 0; i < items.length; i++) {
+        if (result.changeMoney >= items[i][0]) {
+            result.listPurchased.push(items[i][1])
+            result.changeMoney -= items[i][0]
         }
     }
-    // console.log(purchased);
 
-    hasilObj.memberId = memberId;
-    hasilObj.money = money;
-    hasilObj.listPurchased = purchased;
-    hasilObj.changeMoney = change;
-
-    if (memberId == "" || memberId == undefined || money == undefined) {
-        return "Mohon maaf, toko X hanya berlaku untuk member saja."
+    if (memberId == "" || memberId == undefined) {
+        return "Mohon maaf, Toko X hanya berlaku untuk member saja."
     } else if (money < 50000) {
         return "Mohon maaf, uang tidak cukup."
     } else {
-        return hasilObj;
+        return result;
     }
 }
 
